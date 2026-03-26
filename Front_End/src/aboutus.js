@@ -23,7 +23,7 @@ export default function AboutUs() {
       padding: '40px',
       borderRadius: '25px',
       border: '5px solid black',
-      maxWidth: '650px',
+      maxWidth: '800px',
       textAlign: 'center',
       boxShadow: '15px 15px 0px black',
       zIndex: 1, 
@@ -75,7 +75,9 @@ export default function AboutUs() {
         </h1>
         
         <p style={{ lineHeight: '1.6', fontSize: '1.2rem', fontWeight: 600, color: 'black' }}>
-          Losing something valuable on campus can be stressful. <b>BACK_2_U</b> was created 
+          Losing something valuable on campus can be stressful.If you have found something report on the website after handing it over in the nearest hostel or in 
+          in the department's front desk. If you have lost something please search it or report it,you will be notified if someone finds it and report it.
+          <b>BACK_2_U</b> was created 
           to bridge the gap between finders and losers.
         </p>
 
