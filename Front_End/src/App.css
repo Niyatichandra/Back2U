@@ -1,0 +1,339 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+/* --- 1. GLOBAL RESET --- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh; /* height ki jagah min-height use karein */
+  width: 100vw;
+  font-family: "Playfair Display", serif;
+  overflow-x: hidden; /* Horizontal scroll rokne ke liye */
+  overflow-y: auto;   /* Vertical scroll ENABLE karne ke liye ✅ */
+  background-color: #ffdee9;
+}
+
+/* --- 2. MAIN CONTAINER & MESH GRADIENT --- */
+.home-editorial-container {
+  min-height: 100vh; /* Fixed height ki jagah min-height */
+  width: 100vw;
+  position: relative;
+  /* overflow: hidden;  <-- Is line ko delete kar dein ya comment kar dein */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #ffdee9 !important;
+  background-image: 
+    radial-gradient(at 0% 0%, hsla(253,16%,7%,1) 0, transparent 50%), 
+    radial-gradient(at 50% 0%, hsla(225,39%,30%,1) 0, transparent 50%), 
+    radial-gradient(at 100% 0%, hsla(339,49%,30%,1) 0, transparent 50%), 
+    radial-gradient(at 0% 100%, hsla(339,49%,30%,1) 0, transparent 50%), 
+    radial-gradient(at 50% 100%, hsla(225,39%,30%,1) 0, transparent 50%), 
+    radial-gradient(at 100% 100%, hsla(253,16%,7%,1) 0, transparent 50%) !important;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;   /* ✅ FIX: aligns everything in one horizontal line */
+  width: 100%;
+  padding: 20px 40px;
+  position: fixed; 
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;   /* ✅ aligns bell + profile perfectly */
+  gap: 15px;
+}
+
+.header-actions {
+  display: flex;
+  flex-direction: row;   /* ✅ FIX: normal horizontal order */
+  align-items: center;   /* ✅ FIX: vertical alignment */
+  gap: 15px;
+  margin-left: auto;     /* keeps it on right */
+}
+/* --- 4. BUTTON STYLING --- */
+/* --- 4. BUTTON STYLING (Cleaned) --- */
+.menu-btn, .icon-btn, .profile-btn {
+  background: rgba(255, 255, 255, 0.1); 
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  width: 60px; /* Standardized size */
+  height: 60px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  flex-shrink:0;
+}
+
+
+.profile-btn {
+  padding: 0;
+  overflow: hidden;
+  
+}
+
+.profile-btn img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: none !important; /* Keeps logo colors */
+}
+.menu-btn img{
+  width: 26px;
+  height: 26px;
+  filter: invert(1); /* Turns icons white */
+}
+.icon-btn img {
+  width: 26px;
+  height: 26px;
+  filter: invert(1); /* Keeps the notification bell white */
+}
+
+
+.menu-btn:hover, .icon-btn:hover, .profile-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+/* --- 5. CENTRAL CONTENT --- */
+.central-content {
+  padding: 0 80px;
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
+  text-align: left;
+  position: relative;
+  z-index: 10;
+}
+
+.editorial-title {
+  font-size: clamp(2.5rem, 5vw, 4rem); 
+  line-height: 1.1;
+  font-weight: 900;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  color: #fff;
+  text-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.editorial-subtitle {
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 30px;
+  font-family: sans-serif;
+  text-transform: uppercase;
+}
+
+/* --- 6. SEARCH & ACTIONS --- */
+.search-container {
+  width: 100%;
+  max-width: 650px; /* Search bar ki width ke hisaab se adjust karein */
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Icon left mein hi rahega */
+  margin-bottom: 40px;
+}
+
+.main-search-bar {
+  width: 600px;
+  /* padding-left: 65px ensures the text starts AFTER the icon */
+  padding: 22px 30px 22px 65px !important; 
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  color: white(203, 186, 186);
+  font-size: 1.1rem;
+  outline: none;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  position:relative;
+  z-index:10;
+}
+
+.main-search-bar::placeholder {
+  /* This ensures the placeholder text is also pushed over */
+  color: rgba(11, 0, 0, 0.5);
+}
+
+.search-icon-img {
+  position: absolute;
+  left: 25px; /* Thoda andar ki taraf shift kiya */
+  top: 50%;
+  transform: translateY(-50%);
+  width: 22px; 
+  height: 22px;
+  /* Sabse important: Ensure it's above the input background */
+  z-index: 20; /* Isse search bar se upar rakhein */
+  pointer-events: none;
+   display: block!important;
+}
+
+
+.action-links {
+  display: flex;
+  gap: 80px;
+  width: 100%;       /* Takes full width of the parent */
+  max-width: 800px;  /* Matches your search-container max-width */
+  justify-content: flex-start; /* This pulls them to the center */
+  margin-top: 20px;  /* Spacing between search bar and buttons */
+}
+
+.action-btn {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: #fff;
+  font-weight: 700;
+  padding: 16px 35px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50px;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-family: sans-serif;
+  font-size: 0.85rem;
+  transition: all 0.3s ease;
+  display: inline-block;
+  text-align: center;
+}
+
+.action-links .action-btn:first-child {
+  margin-left: 50px; /* Adjust this number to move it further right */
+}
+.action-btn:hover {
+  background: #fff;
+  color: #000;
+  transform: translateY(-3px);
+}
+/* --- 7. SCATTERED IMAGES (VISIBILITY FIX) --- */
+.scatter-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.scatter-card {
+  position: absolute;
+  background: white; /* Solid white for visibility */
+  padding: 8px 8px 22px 8px; 
+  border-radius: 4px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  z-index: 5;
+  transition: transform 0.3s ease;
+}
+
+.scatter-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Positioning Adjustments to avoid covering text */
+.pos-1 { top: 15%; left: 5%; width: 140px; transform: rotate(-6deg); }
+.pos-2 { top: 10%; right: 15%; width: 150px; transform: rotate(4deg); }
+.pos-3 { top: 50%; left: 2%; width: 120px; transform: rotate(12deg); }
+.pos-4 { top: 40%; right: 6%; width: 180px; transform: rotate(-7deg); }
+.pos-5 { bottom: 6%; left: 9%; width: 150px; transform: rotate(-3deg); }
+.pos-6 { bottom: 9%; right: 15%; width: 130px; transform: rotate(-10deg); }
+.pos-7 { top: 3%; left: 40%; width: 120px; opacity: 0.9; }
+.pos-8 { bottom: 8%; right: 35%; width: 90px; opacity: 0.8; }
+
+/* --- 8. FOOTER --- */
+.footer-fixed {
+  position: absolute;
+  bottom: 15px;
+  width: 100%;
+  text-align: center;
+  color: rgba(255,255,255,0.5);
+  font-family: sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 1px;
+} 
+
+/* --- DROPDOWN FIX --- */
+
+/* 1. Ensure the parent doesn't move */
+.profile-section, .nav-left {
+  position: relative; 
+}
+
+/* 2. Make the dropdown float OVER the content, not push it */
+.dropdown {
+  position: absolute;
+  top: 70px; /* Button ke thik niche (button height 60px + gap) */
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+  padding: 10px;
+  min-width: 180px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  z-index: 2000;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  /* Animation for smoothness */
+  animation: fadeIn 0.2s ease-out;
+}
+
+.profile-dropdown {
+  right: 0; /* Profile right side mein khulega */
+}
+
+.side-dropdown {
+  left: 0; /* Menu left side mein khulega */
+}
+
+/* 3. Dropdown Link Styling */
+.dropdown-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 15px;
+  color: white;
+  text-decoration: none;
+  font-family: sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  transition: background 0.2s;
+  border-radius: 8px;
+}
+
+.dropdown-link:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.dropdown-icon, .dropdown-icon-svg, .logout-icon-svg {
+  width: 18px;
+  height: 18px;
+  filter: invert(1);
+}
+
+/* Smooth appearance animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
