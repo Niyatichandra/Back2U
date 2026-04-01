@@ -1,0 +1,245 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@700&family=Poppins:wght@300;400;600&display=swap');
+
+.signup-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #a34a4a 0%, #7c6a8c 100%);
+  font-family: 'Poppins', sans-serif;
+  padding: 20px;
+}
+
+.signup-card {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(15px);
+  padding: 30px 25px; 
+  width: 100%;
+  max-width: 620px; 
+  border-radius: 25px;
+  text-align: center;
+  color: white;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.avatar-container {
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  border: 3px solid white;
+  margin: 0 auto 15px;
+  overflow: hidden;
+  background: #1a3c1e; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+}
+
+.avatar-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+h1 { 
+  font-size: 1.6rem;
+  font-family: 'Roboto Slab', serif;
+  margin: 0; 
+  font-weight: bold;
+}
+
+.subtitle { 
+  margin-top: 5px; 
+  margin-bottom: 25px; 
+  opacity: 0.9; 
+  font-size: 0.75rem;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 18px;
+  width: 100%;
+  text-align: left;
+}
+
+.label-icon-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 6px;
+  gap: 8px;
+}
+
+.label-text {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.input-icon {
+  font-size: 0.9rem;
+}
+
+.input-wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+input {
+  width: 100%;
+  height: 40px;
+  padding: 0 15px;
+  border: 2px solid transparent; 
+  border-radius: 8px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.95rem;
+  color: #333;
+  background: white !important;
+  outline: none;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+input:focus {
+  border: 2px solid #553c7b;
+  background-color: #fcfcfc !important;
+}
+
+input::placeholder {
+  color: #999;
+  opacity: 1;
+}
+
+.eye-toggle {
+  position: absolute;
+  right: 12px;
+  cursor: pointer;
+  color: #666;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  z-index: 5;
+}
+
+.signup-button {
+  width: 100%;
+  padding: 14px;
+  background: #a94389;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background 0.3s; 
+  text-transform: uppercase;
+}
+
+.signup-button:hover {
+  background: #a50670; 
+}
+
+.signup-footer { 
+  margin-top: 18px;
+  font-size: 0.9rem;
+}
+
+.login-link { 
+  color: #4332d7; 
+  text-decoration: none; 
+  font-weight: bold; 
+}
+
+.login-link:hover {
+  text-decoration: underline;
+}
+
+.footer-separator {
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  margin: 15px 0 10px 0;
+}
+
+.back-home-footer {
+  display: block;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  margin-top: 5px;
+}
+
+.back-home-footer:hover {
+  color: white;
+}
+
+.error-text { 
+  color: #ffcfcf; 
+  font-size: 0.72rem; 
+  margin-top: 4px;
+  font-weight: 500;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000; 
+}
+
+.modal-box {
+  background: white;
+  padding: 40px 30px;
+  border-radius: 15px;
+  text-align: center;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  animation: popIn 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.modal-icon {
+  font-size: 60px;
+  margin-bottom: 15px;
+}
+
+.modal-button {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 25px;
+  width: 100%;
+  transition: transform 0.2s;
+}
+
+.modal-button:hover {
+  transform: scale(1.02);
+}
+
+@keyframes popIn {
+  0% { transform: scale(0.5); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+.error-text
+{
+  color:rgb(154, 16, 16)
+}
