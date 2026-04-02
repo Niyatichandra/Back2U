@@ -43,11 +43,19 @@ def add_found_item():
     inserted_id = result.inserted_id
 
     # 🔥 CHECK LOST ITEMS FOR MATCH
-    lost_item = db.lost_items.find_one({
-        "title": {"$regex": title, "$options": "i"},
-        "category": {"$regex": category, "$options": "i"},
-        "status": "active"
-    })
+    words = title.split()
+
+    query = {
+        "status": "active",
+        "$or": []
+    }
+
+    for word in words:
+        query["$or"].append({
+            "title": {"$regex": word, "$options": "i"}
+        })
+
+    lost_item = db.lost_items.find_one(query)
 
     if lost_item:
         user_email = lost_item["email"]
@@ -55,7 +63,7 @@ def add_found_item():
         msg = Message(
             "Your item has been found! 🎉",
             sender="abbca23225_shraddha@banasthali.in",
-            recipients=[user_email]
+            recipients=("Team Back2U",user_email)
         )
 
         item_link = f"http://localhost:3000/item/{str(inserted_id)}"
@@ -111,11 +119,19 @@ def add_lost_item():
 
     db.lost_items.insert_one(item)
 
-    found_item = db.found_items.find_one({
-        "title": {"$regex": title, "$options": "i"},
-        "category": {"$regex": category, "$options": "i"},
-        "status": "active"
-    })
+    words = title.split()
+
+    query = {
+        "status": "active",
+        "$or": []
+    }
+
+    for word in words:
+        query["$or"].append({
+            "title": {"$regex": word, "$options": "i"}
+        })
+
+    found_item = db.found_items.find_one(query)
 
     if found_item:
         return jsonify({
@@ -152,14 +168,21 @@ def claim_item(id):
         return jsonify({"message": "Item not found ❌"}), 404
 
     # 🔥 related lost items update
-    db.lost_items.update_many(
-        {
-            "title": {"$regex": item["title"], "$options": "i"},
-            "category": {"$regex": item["category"], "$options": "i"},
-            "status": "active"
-        },
-        {"$set": {"status": "claimed"}}
-    )
+    words = item["title"].split()
+
+    query = {
+        "status": "active",
+        "$or": []
+    }
+
+    for word in words:
+        query["$or"].append({
+            "title": {"$regex": word, "$options": "i"}
+        })
+
+    db.lost_items.update_many(query, {
+        "$set": {"status": "claimed"}
+    })
 
     return jsonify({"message": "Item claimed successfully ✅"})
 
@@ -185,10 +208,19 @@ def get_item(id):
 def search_items():
     query = request.args.get("q", "")
 
-    items = db.found_items.find({
-        "title": {"$regex": query, "$options": "i"},
-        "status": "active"
-    })
+    words = query.split()
+
+    search_query = {
+        "status": "active",
+        "$or": []
+    }
+
+    for word in words:
+        search_query["$or"].append({
+            "title": {"$regex": word, "$options": "i"}
+        })
+
+    items = db.found_items.find(search_query)
 
     result = []
     for item in items:

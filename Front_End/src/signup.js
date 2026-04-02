@@ -21,22 +21,27 @@ export default function Signup() {
   };
 
   const validate = () => {
-    let newErrors = {};
+  let newErrors = {};
 
-    if (!form.name.trim()) newErrors.name = "Name is required";
-
+  // Name validation: Check if empty OR contains non-alphabet characters
+  if (!form.name.trim()) {
+    newErrors.name = "Name is required";
+  } else if (!/^[a-zA-Z\s]+$/.test(form.name)) {
+    newErrors.name = "Name should only contain alphabets";
+  }
+ //E-mail validation
     if (!form.email) {
       newErrors.email = "Email is required";
     } else if (!/^[a-zA-Z0-9._%+-]+@banasthali\.in$/.test(form.email)) {
       newErrors.email = "Only @banasthali.in email allowed";
     }
-
+ //Password validation
     if (!form.password) {
       newErrors.password = "Password is required";
     } else if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/.test(form.password)) {
       newErrors.password = "Password must be 8+ chars (Upper, Lower, Number, Special)";
     }
-
+ //check if both passwords are same
     if (!form.confirmPassword) {
       newErrors.confirmPassword = "Confirm your password";
     } else if (form.password !== form.confirmPassword) {
