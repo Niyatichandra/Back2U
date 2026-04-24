@@ -206,41 +206,50 @@ def get_item(id):
 
 @items.route("/api/search", methods=["GET"])
 def search_items():
-    query = request.args.get("q", "")
+    query_param = request.args.get("q", "").strip()
 
-    words = query.split()
+    if not query_param:
+        return jsonify([])
+
+    # Create a list of words to search for multiple terms
+    words = query_param.split()
+
+    # We want to find items where ANY word matches the Title OR Category
+    search_conditions = []
+    
+    for word in words:
+        regex_query = {"$regex": word, "$options": "i"}
+        search_conditions.append({"title": regex_query})
+        search_conditions.append({"category": regex_query})
 
     search_query = {
         "status": "active",
-        "$or": []
+        "$or": search_conditions
     }
 
-    for word in words:
-        search_query["$or"].append({
-            "title": {"$regex": word, "$options": "i"}
-        })
-
-    items = db.found_items.find(search_query)
+    found_docs = db.found_items.find(search_query)
 
     result = []
-    for item in items:
+    for item in found_docs:
         result.append({
             "_id": str(item["_id"]),
             "title": item["title"],
+            "category": item.get("category"), # Included for clarity
             "image_url": item.get("image_url")
         })
 
     return jsonify(result)
 
 @items.route("/api/notifications", methods=["GET"])
-def get_notifications():
-    items = db.found_items.find({
+def get_notifications(): # This line must be at the start of the indentation level
+    items_cursor = db.found_items.find({
         "status": "active"
     })
+    
 
     result = []
 
-    for item in items:
+    for item in items_cursor:
         result.append({
             "_id": str(item["_id"]),
             "title": item["title"],
